@@ -58,29 +58,17 @@ trait ApprovePresenterTrait
 			return $control;
 		}
 
-		$this->error(null, HttpResponse::S400_BAD_REQUEST);
+		$this->error('', HttpResponse::S400_BAD_REQUEST);
 	}
 
-	/**
-	 * @param string|null $message
-	 * @param int $code
-	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
-	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingReturnTypeHint
-	 */
-	abstract public function error($message = null, $code = HttpResponse::S404_NOT_FOUND);
+	abstract public function error(string $message = '', int $code = HttpResponse::S404_NOT_FOUND): void;
 
 	/**
-	 * @param string|null $namespace
 	 * @return Session|SessionSection
-	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
 	 */
-	abstract public function getSession($namespace = null);
+	abstract public function getSession(?string $namespace = null);
 
-	/**
-	 * @return User
-	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingReturnTypeHint
-	 */
-	abstract public function getUser();
+	abstract public function getUser(): User;
 
 	/**
 	 * @param int $code [optional]
@@ -89,12 +77,8 @@ trait ApprovePresenterTrait
 	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
 	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingReturnTypeHint
 	 */
-	abstract public function redirect($code, $destination = null, $args = []);
+	abstract public function redirect($destination, $args = []): void;
 
-	/**
-	 * @return void
-	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingReturnTypeHint
-	 */
-	abstract public function sendResponse(IResponse $response);
+	abstract public function sendResponse(IResponse $response): void;
 
 }

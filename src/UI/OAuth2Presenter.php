@@ -80,7 +80,6 @@ class OAuth2Presenter extends Presenter implements LoggerAwareInterface
 			$body->write('Method not allowed');
 			$this->sendResponse($this->createResponse()->withStatus(IResponse::S405_METHOD_NOT_ALLOWED)->withBody($body));
 		}
-
 		$response = $this->createResponse();
 		try {
 			$this->getSession(self::SESSION_NAMESPACE)->authorizationRequest = $this->authorizationRequestSerializer->serialize(

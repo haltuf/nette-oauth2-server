@@ -12,28 +12,24 @@ class RedirectConfigTest extends TestCase
 	public function testGet(): void
 	{
 		$config = new RedirectConfig('approve', 'login');
-		self::assertInternalType('array', $approve = $config->getApproveDestination());
+		self::assertIsArray($approve = $config->getApproveDestination());
 		self::assertCount(1, $approve);
 		self::assertEquals('approve', array_pop($approve));
-		self::assertInternalType('array', $login = $config->getLoginDestination());
+		self::assertIsArray($login = $config->getLoginDestination());
 		self::assertCount(1, $login);
 		self::assertEquals('login', array_pop($login));
 	}
 
-	/**
-	 * @expectedException \Nette\InvalidStateException
-	 */
 	public function testEmptyApproveDestination(): void
 	{
+		$this->expectException(\Nette\InvalidStateException::class);
 		$config = new RedirectConfig(null, 'login');
 		$config->getApproveDestination();
 	}
 
-	/**
-	 * @expectedException \Nette\InvalidStateException
-	 */
 	public function testEmptyLoginDestination(): void
 	{
+		$this->expectException(\Nette\InvalidStateException::class);
 		$config = new RedirectConfig('approve', null);
 		$config->getLoginDestination();
 	}

@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace Lookyman\NetteOAuth2Server\Psr7;
 
+use Laminas\Diactoros\Stream;
 use Nette\Http\IRequest;
 use Nette\Http\IResponse;
 use Nette\NotImplementedException;
 use Psr\Http\Message\StreamInterface;
-use Zend\Diactoros\Stream;
 
 class Response implements ApplicationPsr7ResponseInterface
 {

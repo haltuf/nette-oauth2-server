@@ -21,15 +21,14 @@ class OAuth2PresenterMock extends OAuth2Presenter
 	}
 
 	/**
-	 * @param int $code [optional]
-	 * @param string|null $destination
+	 * @param string $destination
 	 * @param array $args
 	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
 	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingReturnTypeHint
 	 */
-	public function redirect($code, $destination = null, $args = [])
+	public function redirect($destination, $args = []): void
 	{
-		call_user_func($this->callback, $code, $destination, $args);
+		call_user_func($this->callback, $destination, $args);
 		$this->redirectUrl('', IResponse::S302_FOUND);
 	}
 

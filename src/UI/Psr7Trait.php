@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Lookyman\NetteOAuth2Server\UI;
 
+use Laminas\Diactoros\ServerRequestFactory;
+use Laminas\Diactoros\Stream;
 use Lookyman\NetteOAuth2Server\Psr7\ApplicationPsr7ResponseInterface;
 use Lookyman\NetteOAuth2Server\Psr7\Response;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\StreamInterface;
-use Zend\Diactoros\ServerRequestFactory;
-use Zend\Diactoros\Stream;
 
 trait Psr7Trait
 {

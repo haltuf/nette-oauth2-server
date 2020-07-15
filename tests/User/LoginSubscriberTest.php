@@ -44,11 +44,9 @@ class LoginSubscriberTest extends TestCase
 		$subscriber->onLoggedIn($user);
 	}
 
-	/**
-	 * @expectedException \Nette\InvalidStateException
-	 */
 	public function testOnLoggedInNoPresenter(): void
 	{
+		$this->expectException(\Nette\InvalidStateException::class);
 		$redirectConfig = $this->createMock(RedirectConfig::class);
 
 		$user = $this->createMock(User::class);

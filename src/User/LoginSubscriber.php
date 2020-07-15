@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Lookyman\NetteOAuth2Server\User;
 
-use Kdyby\Events\Subscriber;
 use Lookyman\NetteOAuth2Server\RedirectConfig;
 use Lookyman\NetteOAuth2Server\UI\OAuth2Presenter;
 use Nette\Application\Application;
@@ -11,8 +10,9 @@ use Nette\Application\IPresenter;
 use Nette\Application\UI\Presenter;
 use Nette\InvalidStateException;
 use Nette\Security\User;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-class LoginSubscriber implements Subscriber
+class LoginSubscriber implements EventSubscriberInterface
 {
 
 	/**
@@ -23,7 +23,7 @@ class LoginSubscriber implements Subscriber
 	/**
 	 * @var int
 	 */
-	private $priority;
+	private static $priority;
 
 	/**
 	 * @var RedirectConfig
@@ -33,7 +33,7 @@ class LoginSubscriber implements Subscriber
 	public function __construct(RedirectConfig $redirectConfig, int $priority = 0)
 	{
 		$this->redirectConfig = $redirectConfig;
-		$this->priority = $priority;
+		self::$priority = $priority;
 	}
 
 	public function onPresenter(Application $application, IPresenter $presenter): void
@@ -54,12 +54,12 @@ class LoginSubscriber implements Subscriber
 	/**
 	 * @return array
 	 */
-	public function getSubscribedEvents(): array
+	public static function getSubscribedEvents(): array
 	{
 		return [
 			Application::class . '::onPresenter',
 			User::class . '::onLoggedIn' => [
-				['onLoggedIn', $this->priority],
+				['onLoggedIn', self::$priority],
 			],
 		];
 	}
