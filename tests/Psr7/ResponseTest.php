@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Lookyman\NetteOAuth2Server\Tests\Psr7;
 
+use Laminas\Diactoros\Stream;
 use Lookyman\NetteOAuth2Server\Psr7\Response;
 use Nette\Http\IRequest;
 use Nette\Http\IResponse;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\StreamInterface;
-use Zend\Diactoros\Stream;
 
 class ResponseTest extends TestCase
 {

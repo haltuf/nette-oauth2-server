@@ -13,8 +13,7 @@ Integration of [The League of Extraordinary Packages](https://thephpleague.com/)
 Requirements
 ------------
 
-- PHP 7.1
-- [Kdyby/Events](https://github.com/Kdyby/Events)
+- PHP 7.1, 7.2, 7.3, or 7.4
 
 
 Installation

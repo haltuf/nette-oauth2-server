@@ -13,15 +13,17 @@ env:
 php:
   - 7.1
   - 7.2
+  - 7.3
+  - 7.4
 
 install:
   - composer update --no-interaction --prefer-dist $DEPENDENCIES
 
 script:
-  - vendor/bin/parallel-lint src tests
-  - vendor/bin/phpcs --extensions=php --encoding=utf-8 -sp src tests
   - vendor/bin/phpunit --coverage-clover=coverage.xml
-  - vendor/bin/phpstan analyse -c phpstan.neon -l 5 src tests
+  - if [ $TRAVIS_PHP_VERSION == "7.2" ]; then vendor/bin/parallel-lint src tests; fi
+  - if [ $TRAVIS_PHP_VERSION == "7.2" ]; then vendor/bin/phpcs --extensions=php --encoding=utf-8 -sp src tests; fi
+  - if [ $TRAVIS_PHP_VERSION == "7.2" ]; then vendor/bin/phpstan analyse -c phpstan.neon -l 5 src tests; fi
 
 after_success:
   - >

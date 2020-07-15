@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Lookyman\NetteOAuth2Server\Tests\UI;
 
+use Laminas\Diactoros\ServerRequest;
 use League\OAuth2\Server\Exception\OAuthServerException;
 use League\OAuth2\Server\ResourceServer;
 use Lookyman\NetteOAuth2Server\Psr7\ApplicationPsr7ResponseInterface;
@@ -14,7 +15,6 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Log\LoggerInterface;
-use Zend\Diactoros\ServerRequest;
 
 class ResourcePresenterTest extends TestCase
 {
